@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/climbing-stairs/
 
-- Language: python3
+- Language: cpp
 - Runtime: 0 ms
-- Memory: 19.4 MB
-- Submitted: 2026-03-08
+- Memory: 8.3 MB
+- Submitted: 2026-07-24
