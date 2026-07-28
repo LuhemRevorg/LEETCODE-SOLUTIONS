@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
 
-- Language: c
+- Language: cpp
 - Runtime: 0 ms
-- Memory: 7.7 MB
-- Submitted: 2024-07-01
+- Memory: 22.1 MB
+- Submitted: 2026-07-27
