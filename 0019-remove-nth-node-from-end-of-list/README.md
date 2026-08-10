@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
-- Language: c
-- Runtime: 4 ms
-- Memory: 5.8 MB
-- Submitted: 2024-04-10
+- Language: cpp
+- Runtime: 0 ms
+- Memory: 15 MB
+- Submitted: 2026-08-09
