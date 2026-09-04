@@ -8,5 +8,4 @@ class Solution:
                     table[i][j] = 1 + table[i-1][j-1]
                 else:
                     table[i][j] = max(table[i-1][j], table[i][j-1])
-        
         return table[len(text1)][len(text2)]

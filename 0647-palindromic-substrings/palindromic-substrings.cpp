@@ -1,6 +1,5 @@
 class Solution {
 public:
-
     int helper(string &s, int l, int r, int n) {
         int count = 0;
         while(l >= 0 && r < n && (s[l] == s[r])) {++count; --l; ++r;}

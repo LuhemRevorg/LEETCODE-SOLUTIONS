@@ -9,12 +9,9 @@ public:
             if (s[i-1]=='0') {
                 if (s[i-2] != '1' && s[i-2] != '2') return 0; 
                 table[i] = table[i-2];
-            } else if (s[i-2]=='1' || (s[i-2]=='2' && s[i-1] - '0' <=6)) table[i] = table[i-1] + table[i-2];
+            } else if (s[i-2]=='1' || (s[i-2]=='2' && s[i-1] - '0' <= 6)) table[i] = table[i-1] + table[i-2];
             else table[i] = table[i-1];
         }
-
         return table[s.size()];
     }
-
-
 };
