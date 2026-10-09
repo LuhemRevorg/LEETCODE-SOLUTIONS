@@ -25,7 +25,7 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         int val = 0;
         bool found = false;
-        int total = dfs(root, k, val, found);
+        dfs(root, k, val, found);
         return val;
     }
 };

@@ -3,6 +3,6 @@
 https://leetcode.com/problems/contains-duplicate/
 
 - Language: cpp
-- Runtime: 51 ms
-- Memory: 90.8 MB
-- Submitted: 2025-05-14
+- Runtime: 65 ms
+- Memory: 111.1 MB
+- Submitted: 2026-10-05

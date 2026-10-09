@@ -1,12 +1,12 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        std::unordered_map<int, int> storage;
-
+        std::unordered_set<int> store;
         for (auto i : nums) {
-            if (storage.find(i)!=storage.end()) return true;
-            else storage[i]=i;
+            if (store.contains(i)) return true;
+            store.insert(i);
         }
         return false;
+    
     }
 };

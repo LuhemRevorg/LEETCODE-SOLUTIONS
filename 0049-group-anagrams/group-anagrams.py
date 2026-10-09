@@ -1,12 +1,12 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        h = {}
+        mp = {}
 
-        for i in strs:
-            j = ''.join(sorted(i))
-            if j in h:
-                h[j].append(i)
-            else: h[j] = [i]
-        
-        ret = list(h.values())
-        return ret
+        for s in strs:
+            val = "".join(sorted(s))
+            if val in mp:
+                mp[val].append(s)
+            else:
+                mp[val] = [s]
+
+        return list(mp.values())

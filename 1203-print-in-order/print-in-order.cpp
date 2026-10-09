@@ -3,34 +3,31 @@ class Foo {
     std::condition_variable cv;
     int state;
 public:
-    Foo():state{0} {}
+    Foo():state{1} {
+
+    }
 
     void first(function<void()> printFirst) {
-        
+        {std::lock_guard<std::mutex> lck(mtx);
         // printFirst() outputs "first". Do not change or remove this line.
-        std::unique_lock<std::mutex> lock(mtx);
         printFirst();
-        state=1;
+        ++state;}
         cv.notify_all();
     }
 
     void second(function<void()> printSecond) {
-        
+        {std::unique_lock<std::mutex> lck(mtx);
+        cv.wait(lck, [&]{return state==2;});
         // printSecond() outputs "second". Do not change or remove this line.
-        std::unique_lock<std::mutex> lock(mtx);
-        cv.wait(lock, [&]{return state == 1;});
         printSecond();
-        state=2;
+        ++state;}
         cv.notify_all();
     }
 
     void third(function<void()> printThird) {
-        
+        std::unique_lock<std::mutex> lck(mtx);
+        cv.wait(lck, [&]{return state==3;});
         // printThird() outputs "third". Do not change or remove this line.
-        std::unique_lock<std::mutex> lock(mtx);
-        cv.wait(lock, [&]{return state == 2;});
         printThird();
-        state=3;
-        cv.notify_all();
     }
 };

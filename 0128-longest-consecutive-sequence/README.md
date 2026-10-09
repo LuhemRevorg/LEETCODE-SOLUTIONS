@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/longest-consecutive-sequence/
 
-- Language: python3
-- Runtime: 39 ms
-- Memory: 36.6 MB
-- Submitted: 2026-06-09
+- Language: cpp
+- Runtime: 79 ms
+- Memory: 82.4 MB
+- Submitted: 2026-09-28

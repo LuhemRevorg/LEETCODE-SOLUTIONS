@@ -3,6 +3,6 @@
 https://leetcode.com/problems/building-h2o/
 
 - Language: cpp
-- Runtime: 0 ms
-- Memory: 12 MB
-- Submitted: 2026-07-19
+- Runtime: 2 ms
+- Memory: 12.1 MB
+- Submitted: 2026-10-06

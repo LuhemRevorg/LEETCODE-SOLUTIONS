@@ -14,8 +14,7 @@ public:
         if(!node) return nullptr;
         if(node->val >= q->val && node->val <= p->val) return node;
         if (node->val >= q->val) return traverse(node->left, p, q);
-        if (node->val <= p->val) return traverse(node->right, p, q);
-        return nullptr;
+        return traverse(node->right, p, q);
     }
 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

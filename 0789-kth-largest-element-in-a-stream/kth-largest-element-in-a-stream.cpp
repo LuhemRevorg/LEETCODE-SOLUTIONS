@@ -1,24 +1,26 @@
 class KthLargest {
     int k;
-    std::priority_queue<int, vector<int>, std::greater<int>> pq;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> store;
 public:
-    KthLargest(int k, vector<int>& nums):k{k} {
-        int i = 0;
-        while(i < nums.size() && pq.size() < k) {
-            pq.push(nums[i]);
-            ++i;
-        }
-        while(i < nums.size()) {
-            if(nums[i]>pq.top()) {pq.pop(); pq.push(nums[i]);}
-            ++i;
+    KthLargest(int k, vector<int>& nums): k{k} { 
+        for (auto i : nums) {
+            if (store.size() < k) {
+                store.push(i);
+            } else if (store.top() < i) {
+                store.pop();
+                store.push(i);
+            }
         }
     }
     
     int add(int val) {
-        if(pq.size() < k) pq.push(val);
-        else if (pq.top() < val) {pq.pop(); pq.push(val);}
-
-        return pq.top();
+        if (store.size() < k) {
+            store.push(val);
+        } else if (store.top() < val) {
+            store.pop();
+            store.push(val);
+        }
+        return store.top();
     }
 };
 

@@ -1,19 +1,13 @@
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        std::priority_queue<int> store(stones.begin(), stones.end());
+        std::priority_queue<int> heap(stones.begin(), stones.end());
         
-        int rem = store.top(); store.pop();
-
-        while(!store.empty()) {
-            rem -= store.top(); store.pop();
-            if (!(rem==0)) store.push(rem);
-            else if (store.empty()) return 0;
-            rem = store.top(); store.pop();
+        while(heap.size()>1) {
+            int num1 = heap.top(); heap.pop(); int num2 = heap.top(); heap.pop();
+            heap.push(std::abs(num1-num2));
         }
 
-        return rem;
-
-        
+        return heap.top();
     }
 };

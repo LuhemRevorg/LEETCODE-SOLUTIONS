@@ -4,5 +4,5 @@ https://leetcode.com/problems/last-stone-weight/
 
 - Language: cpp
 - Runtime: 0 ms
-- Memory: 10.1 MB
-- Submitted: 2026-08-03
+- Memory: 9.8 MB
+- Submitted: 2026-10-06

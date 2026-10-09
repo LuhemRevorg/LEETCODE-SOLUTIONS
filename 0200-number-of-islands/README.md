@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/number-of-islands/
 
-- Language: cpp
-- Runtime: 23 ms
-- Memory: 24.3 MB
-- Submitted: 2026-08-12
+- Language: python3
+- Runtime: 252 ms
+- Memory: 21.6 MB
+- Submitted: 2026-09-30

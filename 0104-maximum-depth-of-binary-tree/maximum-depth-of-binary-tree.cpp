@@ -12,7 +12,14 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(!root) return 0;
-        return std::max(maxDepth(root->left), maxDepth(root->right)) + 1;
+        int max = 0;
+        auto recurse = [&] (this auto &self, TreeNode* node, int curr) {
+            if (!node) {max = std::max(max, curr); return;}
+            self(node->left, curr + 1);
+            self(node->right, curr + 1);
+        };
+
+        recurse(root, 0);
+        return max;
     }
 };

@@ -1,15 +1,23 @@
 class Solution {
-    std::unordered_map<int, int> store;
+    std::vector<int> steps;
+    int max;
 public:
+    Solution() : steps(46, 0) {
+        steps[1] = 1; // 1 step -> 1 way
+        steps[2] = 2; // 2 steps -> 2 ways
+    }
+
     int climbStairs(int n) {
-        if (store.contains(n)) return store[n];
-        store[1] = 1;
-        store[2] = 2;
+        if (n <= 2) return n;
+        
+        if (steps[n] != 0) return steps[n];
 
         for (int i = 3; i <= n; ++i) {
-            store[i] = store[i-1] + store[i-2];
+            if (steps[i] == 0) {
+                steps[i] = steps[i - 1] + steps[i - 2];
+            }
         }
 
-        return store[n];
+        return steps[n];
     }
 };

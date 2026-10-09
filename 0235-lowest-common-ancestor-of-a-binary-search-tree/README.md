@@ -3,6 +3,6 @@
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
 - Language: cpp
-- Runtime: 23 ms
+- Runtime: 17 ms
 - Memory: 23.4 MB
-- Submitted: 2026-08-17
+- Submitted: 2026-09-20

@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/min-stack/
 
-- Language: python3
-- Runtime: 0 ms
-- Memory: 22.5 MB
-- Submitted: 2026-05-26
+- Language: cpp
+- Runtime: 55 ms
+- Memory: 152.5 MB
+- Submitted: 2026-10-05
