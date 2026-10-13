@@ -23,27 +23,34 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) {
         if (!node) return nullptr;
-        std::unordered_map<Node* , Node*> visited;
+
+        std::unordered_map<int, Node*> visited;
+        Node *cpy = new Node(node->val);
+        visited[node->val] = cpy;
         
-        std::function<void(Node*, Node*)> dfs = [&](Node* nde, Node* nde_copy) {
-            visited[nde] = nde_copy;
-            for (auto child : nde->neighbors) {
-                if (!visited.contains(child)) {
-                    Node* child_copy = new Node(child->val);
-                    nde_copy->neighbors.emplace_back(child_copy);
-                    dfs(child, child_copy);
-                } else {
-                    nde_copy->neighbors.emplace_back(visited[child]);
+        auto bfs = [&](Node* n) {
+            std::queue<Node*> q;
+            
+            for (auto i : n->neighbors) {
+                q.push(i);
+                visited[i->val] = new Node(i->val);
+                cpy->neighbors.push_back(visited[i->val]);
+            }
+            
+            while(!q.empty()) {
+                Node* top = q.front(); q.pop();
+                for (auto i : top->neighbors) {
+                    Node * c = nullptr;
+                    if (visited.contains(i->val)) c = visited[i->val];
+                    else {c = new Node(i->val); visited[i->val] = c; q.push(i);}
+                    visited[top->val]->neighbors.push_back(c);
                 }
             }
         };
 
+        bfs(node);
 
-
-        Node* first_copy = new Node(node->val); 
-        dfs(node, first_copy);
-
-        return first_copy;
+        return cpy;
 
     }
 };
