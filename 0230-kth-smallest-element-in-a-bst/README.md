@@ -5,4 +5,4 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 - Language: cpp
 - Runtime: 0 ms
 - Memory: 24.4 MB
-- Submitted: 2026-09-20
+- Submitted: 2026-10-13

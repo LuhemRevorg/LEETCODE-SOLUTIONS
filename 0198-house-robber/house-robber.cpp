@@ -1,13 +1,11 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        std::vector<int> store(n+1);
-        store[0] = 0;
-        store[1] = nums[0];
-        for (int i = 2; i <= n; ++i) {
-            store[i] = std::max(store[i-2] + nums[i-1], store[i-1]); 
+        std::vector<int> dp(nums.size()+2, 0);
+
+        for (int i = 2; i < dp.size(); ++i) {
+            dp[i] = std::max(dp[i-1], dp[i-2] + nums[i-2]);
         }
-        return store.back();
+        return dp.back();
     }
 };

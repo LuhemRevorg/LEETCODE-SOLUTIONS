@@ -11,21 +11,23 @@
  */
 class Solution {
 public:
-
-     int dfs(TreeNode* node, int k, int &val, bool &found) {
-        if (!node) return 0;
-        if (found) return 0;
-        int total = dfs(node->left, k, val, found);
-        if (found) return 0;
-        if (++total == k) { found = true; val = node->val; return 0; }
-        total += dfs(node->right, k - total, val, found);
-        return total;
-    }
-
     int kthSmallest(TreeNode* root, int k) {
         int val = 0;
-        bool found = false;
-        dfs(root, k, val, found);
+        int nos = 0;
+
+        auto dfs = [&](this auto &self, TreeNode* node) {
+            if (!node) return;
+            
+            self(node->left);
+            ++nos;
+            if (nos == k) val = node->val;
+            self(node->right);
+            
+            
+        };
+
+        dfs(root);
         return val;
+
     }
 };

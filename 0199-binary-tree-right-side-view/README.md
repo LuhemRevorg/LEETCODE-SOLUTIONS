@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/binary-tree-right-side-view/
 
-- Language: python3
+- Language: cpp
 - Runtime: 0 ms
-- Memory: 19.3 MB
-- Submitted: 2026-06-05
+- Memory: 15 MB
+- Submitted: 2026-10-13

@@ -11,17 +11,20 @@
  */
 class Solution {
 public:
-
-    void traverse(int &count, TreeNode *node, int max) {
-        if (!node) return;
-        if (node->val >= max) ++count;
-        traverse(count, node->left, std::max(max, node->val));
-        traverse(count, node->right, std::max(max, node->val));
-    }
-
     int goodNodes(TreeNode* root) {
         int count = 0;
-        traverse(count, root, root->val);
+        auto traverse = [&](this auto &self, TreeNode* node, int val) {
+            if (!node) return;
+            
+            if (node->val >= val) {
+                ++count;
+                val = node->val;
+            }
+
+            self(node->left, val);
+            self(node->right, val);
+        };
+        traverse(root, root->val);
         return count;
     }
 };
