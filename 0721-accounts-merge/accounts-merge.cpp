@@ -1,56 +1,46 @@
 class Solution {
 public:
     vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-        std::unordered_map<string, int> location;
-        std::vector<int> og;
-        std::vector<char> dead(accounts.size(), 0);
+        std::map<string, string> relation;
+        std::unordered_map<string, string> mail_to_name;
 
-        for (int i = 0; i < accounts.size(); ++i) {
-            auto &account = accounts[i];
-            std::vector<int> groups;
+        auto find = [&](string mail) -> string {                       // FIX: explicit return type
+            auto it = relation.find(mail);
+            if (it == relation.end()) return "";
+            while (relation[mail] != mail) mail = relation[mail];      // FIX: walk up to the root
+            return mail;
+        };
 
-            for (auto itr = account.begin() + 1; itr < account.end(); ++itr) {
-                auto loc = location.find(*itr);
-                if (loc != location.end() &&
-                    std::find(groups.begin(), groups.end(), loc->second) == groups.end())
-                    groups.push_back(loc->second);
+        for (auto &account : accounts) {
+            string name = account[0];                                  // FIX: string, not int
+            string parent = account[1];
+            for (int i = 1; i < account.size(); ++i) {                 // FIX: start at 1, not 2
+                string f = find(account[i]);
+                if (f != "") parent = f; 
             }
+            relation[parent] = parent;
+            mail_to_name[parent] = name;
 
-            if (groups.empty()) {
-                og.push_back(i);
-                for (auto itr = account.begin() + 1; itr < account.end(); ++itr)
-                    location[*itr] = i;
+            for (int i = 1; i < account.size(); ++i) {                 // FIX: start at 1
+                string f = find(account[i]);
+                relation[f == "" ? account[i] : f] = parent;           // FIX: re-point the old root, merging its whole group
+            }
+        }
+
+        std::vector<std::vector<string>> ret;
+        std::unordered_map<string, int> idx_map;
+
+        for (auto &[key, val] : relation) {
+            string root = find(key);                                   // FIX: group by root, not direct parent
+            if (idx_map.contains(root)) {                              // FIX: was map_idx
+                ret[idx_map[root]].emplace_back(key);                  // FIX: was ret[i]
             } else {
-                int find_account = *std::max_element(groups.begin(), groups.end(),
-                    [&](int a, int b) { return accounts[a].size() < accounts[b].size(); });
-
-                for (int g : groups) {
-                    if (g == find_account) continue;
-                    for (auto itr = accounts[g].begin() + 1; itr < accounts[g].end(); ++itr) {
-                        location[*itr] = find_account;
-                        accounts[find_account].emplace_back(std::move(*itr));
-                    }
-                    accounts[g].resize(1);
-                    dead[g] = 1;                                   // fix 1
-                }
-
-                for (auto itr = account.begin() + 1; itr < account.end(); ++itr) {
-                    if (!location.contains(*itr)) {
-                        accounts[find_account].emplace_back(*itr);
-                        location[*itr] = find_account;
-                    }
-                }
+                idx_map[root] = ret.size();
+                ret.push_back({mail_to_name[root], key});              // FIX: one row of {name, email}
             }
         }
 
-        std::vector<vector<string>> ret;
-        for (int idx : og) {
-            if (dead[idx]) continue;
-            auto &acc = accounts[idx];
-            std::sort(acc.begin() + 1, acc.end());
-            acc.erase(std::unique(acc.begin() + 1, acc.end()), acc.end());  // fix 2
-            ret.push_back(std::move(acc));                                // move, don't copy
-        }
         return ret;
+
     }
 };

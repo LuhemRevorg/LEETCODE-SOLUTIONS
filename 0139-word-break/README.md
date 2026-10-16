@@ -3,6 +3,6 @@
 https://leetcode.com/problems/word-break/
 
 - Language: cpp
-- Runtime: 0 ms
-- Memory: 10.7 MB
-- Submitted: 2026-08-30
+- Runtime: 15 ms
+- Memory: 15.9 MB
+- Submitted: 2026-10-15
