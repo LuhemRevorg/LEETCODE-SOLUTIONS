@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/valid-anagram/
 
-- Language: cpp
-- Runtime: 3 ms
-- Memory: 10 MB
-- Submitted: 2025-05-15
+- Language: python3
+- Runtime: 10 ms
+- Memory: 19.4 MB
+- Submitted: 2026-10-18
