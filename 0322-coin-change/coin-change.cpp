@@ -1,19 +1,14 @@
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
-        
-        std::vector<int> combos(amount+1, 100001);
-        combos[0] = 0;
-        for(int i = 0; i <= amount; ++i) {
-            for(auto coin : coins) {
-                if ((long)coin + i <= amount) {
-                    combos[i+coin] = std::min(combos[i+coin], combos[i] + 1);
-                }
+        std::vector<int> dp(amount + 1, INT_MAX - 1);
+        dp[0] = 0;
+        for (int i = 0; i <= amount; ++i) {
+            for (auto coin : coins) {
+                if (coin <= i) dp[i] = std::min(dp[i-coin] + 1, dp[i]);
             }
         }
 
-        if (combos.back() == 100001) return -1;
-        return combos.back();
-
+        return dp.back() == INT_MAX - 1 ? -1 : dp.back();
     }
 };
